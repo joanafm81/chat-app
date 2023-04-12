@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, ImageBackground, StyleSheet, View, Text, TextInput, TouchableOpacity, Button } from 'react-native';
+import { Image, ImageBackground, StyleSheet, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 const Start = ({ navigation }) => {
 
@@ -53,9 +53,12 @@ const Start = ({ navigation }) => {
             onPress={() => navigation.navigate('Chat', { name: name, color: color })}>
             <Text style={styles.chatButtonText}>Start Chatting</Text>
           </TouchableOpacity>
-
         </View>
       </ImageBackground>
+      {/*Fix keyboard hides the message input field on Android*/}
+      {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
+      {/*Fix keyboard hides the message input field on iOS*/}
+      {Platform.OS === "ios" ? <KeyboardAvoidingView behavior="padding" /> : null}
     </View>
   );
 }

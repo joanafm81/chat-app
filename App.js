@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-//import the screens
+//Import the screens
 import Start from './components/Start';
 import Chat from './components/Chat';
 
-//import react Navigation
+//Import react Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// Create the navigator
+//Create the navigator
 const Stack = createNativeStackNavigator();
 
 
