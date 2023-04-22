@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import * as ImagePicker from 'expo-image-picker';
-import { useState } from 'react';
+//import { useState } from 'react';
 import * as Location from 'expo-location';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
@@ -54,18 +54,17 @@ const CustomActions = ({ wrapperStyle, iconTextStyle, onSend, storage, uid }) =>
     if (permissions?.granted) {
       let result = await ImagePicker.launchImageLibraryAsync();
       if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-      else Alert.alert("Permissions haven't been granted.");
-    }
+    } else Alert.alert("Permissions haven't been granted.");
   }
 
 
   const takePhoto = async () => {
-    let permissions = await ImagePicker.requestCameraPermissionsAsync();
+    let permissions = await ImagePicker.getCameraPermissionsAsync();
+    if (!permissions?.granted) permissions = await ImagePicker.requestCameraPermissionsAsync();
     if (permissions?.granted) {
       let result = await ImagePicker.launchCameraAsync();
       if (!result.canceled) await uploadAndSendImage(result.assets[0].uri);
-      else Alert.alert("Permissions haven't been granted.");
-    }
+    } else Alert.alert("Permissions haven't been granted.");
   };
 
   const getLocation = async () => {

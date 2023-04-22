@@ -26,7 +26,7 @@ Chat app for mobile devices that provides users with a chat interface and option
 
 ### Installation
 
-* Clone...
+* Clone the repository.
 * Copy-paste the const firebaseConfig = {...}; code into your App.js file.
 
 ```
